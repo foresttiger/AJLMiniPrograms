@@ -1,0 +1,15 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#ffd401",
+    "navigationBarTitleText": "安居乐报价小能手",
+    "navigationBarTextStyle":"white",
+    "backgroundColor": "#ffd401",
+    "enablePullDownRefresh":"false"
+    
+  }
+}
