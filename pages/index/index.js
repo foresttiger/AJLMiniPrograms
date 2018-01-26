@@ -15,6 +15,23 @@ Page({
       url: '../logs/logs'
     })
   },
+  getQuote:function(){
+    let options = {
+      name: '李白',
+      cellname: '安新小区'
+    }
+    wx.request({
+      url: 'http://miniprograms.gxajl.com/miniprograms/', //仅为示例，并非真实的接口地址
+      method: "get",
+      data: JSON.stringify(options),
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data)
+      }
+    })
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
