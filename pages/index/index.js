@@ -21,7 +21,7 @@ Page({
       cellname: '安新小区'
     }
     wx.request({
-      url: 'http://miniprograms.gxajl.com/miniprograms/', //仅为示例，并非真实的接口地址
+      url: 'https://miniprograms.gxajl.com/miniprograms/', //仅为示例，并非真实的接口地址
       method: "get",
       data: JSON.stringify(options),
       header: {
