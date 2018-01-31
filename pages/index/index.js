@@ -84,32 +84,81 @@ Page({
       mobilephone: this.data.mobilephone,
       date: util.formatTime(new Date())
     }
+    var mobilephonereg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    var namereg = /[\u4E00-\u9FA5\uF900-\uFA2D]{2,3}/;
     var opts = JSON.stringify(opt);
     // wx.fetchMessage(opt);
-    if (!!opt.cellname) {
-      wx.showToast({
-        title: '提交中...',
-        icon: 'loading',
-        duration: 10000
-      })
-      this.fetchMessage(opt)
-    }else{
-      wx.showModal({
-        title: '提示',
-        content: '没有输入小区名',
-        showCancel:false,
-        success: function (res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-          }
-        }
-      })
+    // if (!!opt.cellname) {
+    //   wx.showToast({
+    //     title: '提交中...',
+    //     icon: 'loading',
+    //     duration: 10000
+    //   })
+    //   this.fetchMessage(opt)
+    // }else{
+    //   // this.showMSModel("请输入小区名!")
+    // }
+    // if (!!!opt.cellname){
+    //   this.showMSModel("请输入小区名!")
+    // }
+    switch(true){
+      case !!!opt.cellname:
+          this.showMSModel("请输入小区名!")
+          break;
+      case !!!opt.address:
+        this.showMSModel("请输入小区所在地址!")
+        break;
+      case !!!opt.components:
+        this.showMSModel("请输入您的户型!")
+        break;
+      case !!!opt.area:
+        this.showMSModel("请输入房屋建筑面积!")
+        break;
+      case !!!opt.style:
+        this.showMSModel("请输入喜欢的装修风格!")
+        break;
+      case !!!opt.budget:
+        this.showMSModel("请输入装修预算!")
+        break;
+      case !!!opt.type:
+        this.showMSModel("请输入装修类型，半包？全包？")
+        break;
+      case !namereg.test(opt.name):
+        this.showMSModel("请输入您的姓名!")
+        break;
+      case !mobilephonereg.test(opt.mobilephone):
+        this.showMSModel("请输入您的手机号码!")
+        break;
+      default:
+        wx.showToast({
+          title: '提交中...',
+          icon: 'loading',
+          duration: 10000
+        })
+        this.fetchMessage(opt)
+      break;
     }
+
+
+
+  },
+  showMSModel:function(e){
+    wx.showModal({
+      title: '提示',
+      content:e,
+      showCancel: false,
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        }
+      }
+    })
   },
   fetchMessage: function(e){
     let _this = this;
+    let userInfo ="微信号：" + this.data.userInfo.nickName;
     let opt = e;
-    let options = "cellname=" + opt.cellname + "&address=" + opt.address + "&components=" + opt.components + "&area=" + opt.area + "&style=" + opt.style + "&budget=" + opt.budget + "&type=" + opt.type + "&name=" + opt.name + "&mobilephone=" + opt.mobilephone + "&date=" + opt.date;
+    let options = "cellname=" + opt.cellname + "&address=" + opt.address + "&components=" + opt.components + "&area=" + opt.area + "&style=" + opt.style + "&budget=" + opt.budget + "&type=" + opt.type + "&name=" + opt.name + "&mobilephone=" + opt.mobilephone + "&date=" + opt.date + "&other=" + userInfo ;
 
     wx.request({
       url: 'https://miniprograms.gxajl.com/miniprograms/index.php?' + options, //仅为示例，并非真实的接口地址
