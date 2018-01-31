@@ -13,9 +13,9 @@ Page({
   },
   //事件处理函数
   bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    // wx.navigateTo({
+    //   url: '../logs/logs'
+    // })
   },
   // 小区名输入
   cellnameInput:function(e){
@@ -87,20 +87,6 @@ Page({
     var mobilephonereg = /^[1][3,4,5,7,8][0-9]{9}$/;
     var namereg = /[\u4E00-\u9FA5\uF900-\uFA2D]{2,3}/;
     var opts = JSON.stringify(opt);
-    // wx.fetchMessage(opt);
-    // if (!!opt.cellname) {
-    //   wx.showToast({
-    //     title: '提交中...',
-    //     icon: 'loading',
-    //     duration: 10000
-    //   })
-    //   this.fetchMessage(opt)
-    // }else{
-    //   // this.showMSModel("请输入小区名!")
-    // }
-    // if (!!!opt.cellname){
-    //   this.showMSModel("请输入小区名!")
-    // }
     switch(true){
       case !!!opt.cellname:
           this.showMSModel("请输入小区名!")
@@ -183,7 +169,37 @@ Page({
       }
     })
   },
-  onLoad: function () {
+  onLoad: function (e) {
+    var _this = this;
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success(){
+              wx.getUserInfo({
+                success: res => {
+                  app.globalData.userInfo = res.userInfo
+                  _this.setData({
+                    userInfo: res.userInfo,
+                    hasUserInfo: true
+                  })
+                }
+              })
+            },
+            fail(e) {
+              // wx.getSetting({
+              //   success: (res) => {
+              //   }
+              // })
+            }
+          })
+        }else{
+          console.log("111")
+        }
+      }
+    })
+    // this.getUserInfo();
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -210,13 +226,16 @@ Page({
         }
       })
     }
+    // this.getUserInfo(e)
   },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    if (app.globalData.userInfo){
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      })
+    }
   }
 })
