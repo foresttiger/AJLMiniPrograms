@@ -9,16 +9,82 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    inputTxt: ''
+    inputTxt: '',
+    styles: ['中式', '现代', '美式', '欧式', '北欧', '日式'],
+    objectStyles: [
+      {id: 0,name: '中式'},
+      {id: 1,name: '现代'},
+      {id: 2,name: '美式'},
+      {id: 3,name: '欧式'},
+      {id: 4,name: '北欧'}, 
+      {id: 5,name: '日式'}
+    ],
+    index: 0,
+    components: ['一室一厅一厨一卫一阳台', '二室一厅一厨一卫一阳台', '二室二厅一厨一卫一阳台', '三室二厅一厨二卫一阳台', '四室二厅一厨二卫一阳台', '四室二厅一厨二卫二阳台'],
+    objectComponents: [
+      { id: 0, name: '一室一厅一厨一卫一阳台' },
+      { id: 1, name: '二室一厅一厨一卫一阳台' },
+      { id: 2, name: '二室二厅一厨一卫一阳台' },
+      { id: 3, name: '三室二厅一厨二卫一阳台' },
+      { id: 4, name: '四室二厅一厨二卫一阳台' },
+      { id: 5, name: '四室二厅一厨二卫二阳台' }
+    ],
+    componentsIndex: 2,
+    budget: ['3-5万', '5-10万', '10-15万', '15-20万', '20-30万', '30万以上'],
+    objectBudget: [
+      { id: 0, name: '3-5万' },
+      { id: 1, name: '5-10万' },
+      { id: 2, name: '10-15万' },
+      { id: 3, name: '15-20万' },
+      { id: 4, name: '20-30万' },
+      { id: 5, name: '30万以上' }
+    ],
+    budgetIndex: 2,
+     styles: ['中式', '现代', '美式', '欧式','北欧','日式'],
+    objectStyles: [
+      {
+        id: 0,
+        name: '中式'
+      },
+      {
+        id: 1,
+        name: '现代'
+      },
+      {
+        id: 2,
+        name: '美式'
+      },
+      {
+        id: 3,
+        name: '欧式'
+      },
+      {
+        id: 4,
+        name: '北欧'
+      }, {
+        id: 5,
+        name: '日式'
+      }
+    ],
+    items: [
+      { name: 'Half', value: '半包', checked: 'true' },
+      { name: 'All', value: '全包' },
+    ]
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     // wx.navigateTo({
     //   url: '../logs/logs'
     // })
   },
   // 小区名输入
-  cellnameInput:function(e){
+  cellnameInput: function (e) {
     this.setData({
       cellname: e.detail.value
     })
@@ -71,15 +137,15 @@ Page({
       mobilephone: e.detail.value
     })
   },
-  getQuote:function(){
+  getQuote: function () {
     let opt = {
       cellname: this.data.cellname,
-      address:this.data.address,
-      components:this.data.components,
-      area:this.data.area,
-      style:this.data.style,
-      budget:this.data.budget,
-      type:this.data.type,
+      address: this.data.address,
+      components: this.data.components,
+      area: this.data.area,
+      style: this.data.style,
+      budget: this.data.budget,
+      type: this.data.type,
       name: this.data.name,
       mobilephone: this.data.mobilephone,
       date: util.formatTime(new Date())
@@ -87,10 +153,10 @@ Page({
     var mobilephonereg = /^[1][3,4,5,7,8][0-9]{9}$/;
     var namereg = /[\u4E00-\u9FA5\uF900-\uFA2D]{2,3}/;
     var opts = JSON.stringify(opt);
-    switch(true){
+    switch (true) {
       case !!!opt.cellname:
-          this.showMSModel("请输入小区名!")
-          break;
+        this.showMSModel("请输入小区名!")
+        break;
       case !!!opt.address:
         this.showMSModel("请输入小区所在地址!")
         break;
@@ -122,16 +188,16 @@ Page({
           duration: 10000
         })
         this.fetchMessage(opt)
-      break;
+        break;
     }
 
 
 
   },
-  showMSModel:function(e){
+  showMSModel: function (e) {
     wx.showModal({
       title: '提示',
-      content:e,
+      content: e,
       showCancel: false,
       success: function (res) {
         if (res.confirm) {
@@ -140,11 +206,11 @@ Page({
       }
     })
   },
-  fetchMessage: function(e){
+  fetchMessage: function (e) {
     let _this = this;
-    let userInfo ="微信号：" + this.data.userInfo.nickName;
+    let userInfo = "微信号：" + this.data.userInfo.nickName;
     let opt = e;
-    let options = "cellname=" + opt.cellname + "&address=" + opt.address + "&components=" + opt.components + "&area=" + opt.area + "&style=" + opt.style + "&budget=" + opt.budget + "&type=" + opt.type + "&name=" + opt.name + "&mobilephone=" + opt.mobilephone + "&date=" + opt.date + "&other=" + userInfo ;
+    let options = "cellname=" + opt.cellname + "&address=" + opt.address + "&components=" + opt.components + "&area=" + opt.area + "&style=" + opt.style + "&budget=" + opt.budget + "&type=" + opt.type + "&name=" + opt.name + "&mobilephone=" + opt.mobilephone + "&date=" + opt.date + "&other=" + userInfo;
 
     wx.request({
       url: 'https://miniprograms.gxajl.com/miniprograms/index.php?' + options, //仅为示例，并非真实的接口地址
@@ -176,7 +242,7 @@ Page({
         if (!res.authSetting['scope.userInfo']) {
           wx.authorize({
             scope: 'scope.userInfo',
-            success(){
+            success() {
               wx.getUserInfo({
                 success: res => {
                   app.globalData.userInfo = res.userInfo
@@ -194,7 +260,7 @@ Page({
               // })
             }
           })
-        }else{
+        } else {
           console.log("111")
         }
       }
@@ -205,7 +271,7 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -228,10 +294,10 @@ Page({
     }
     // this.getUserInfo(e)
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
-    if (app.globalData.userInfo){
+    if (app.globalData.userInfo) {
       this.setData({
         userInfo: e.detail.userInfo,
         hasUserInfo: true
