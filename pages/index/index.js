@@ -87,6 +87,11 @@ Page({
     var opts = JSON.stringify(opt);
     // wx.fetchMessage(opt);
     if (!!opt.cellname) {
+      wx.showToast({
+        title: '提交中...',
+        icon: 'loading',
+        duration: 10000
+      })
       this.fetchMessage(opt)
     }else{
       wx.showModal({
