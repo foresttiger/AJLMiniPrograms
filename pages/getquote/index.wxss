@@ -1,0 +1,94 @@
+/**index.wxss**/
+.userinfo {
+  margin-top: -50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  margin-bottom: 10px;
+}
+.userinfoBtn{
+  background: #ffd401;
+  border:1px solid #ffd401;
+  outline: none;
+  box-shadow: none;
+  color: #000000;
+  font-size: 22px;
+}
+button::after{
+  border: none;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 20px;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+.form label{
+  width:42px;
+  text-align: right;
+  margin-right: 6px;
+  font-size: 14px;
+}
+.form .line{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80rpx;
+  margin:6rpx;
+}
+.form .input{
+  width: 70%;
+  padding: 6px;
+  margin:6px;
+  background-color: #FFF;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.btn{
+  width: 40%;
+  height: 40px;
+  background-color: #4f2a1a;
+  color:#FFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-top: 16px;
+}
+.radio-group{
+  width: 70%;
+  margin:6px;
+  padding: 6px;
+}
+picker{
+  width: 70%;
+  padding: 6px;
+  margin:6px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.tips{
+  position: absolute;
+  bottom:6px;
+  font-size: 12px;
+}
