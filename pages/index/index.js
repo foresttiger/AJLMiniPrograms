@@ -144,14 +144,17 @@ Page({
     let _this = this;
     let userInfo ="微信号：" + this.data.userInfo.nickName;
     let opt = e;
+    Object.assign(opt, { "other": userInfo });
     let options = "cellname=" + opt.cellname + "&address=" + opt.address + "&components=" + opt.components + "&area=" + opt.area + "&style=" + opt.style + "&budget=" + opt.budget + "&type=" + opt.type + "&name=" + opt.name + "&mobilephone=" + opt.mobilephone + "&date=" + opt.date + "&other=" + userInfo ;
 
     wx.request({
-      url: 'https://miniprograms.gxajl.com/miniprograms/index.php?' + options, //仅为示例，并非真实的接口地址
+      url: 'https://miniprograms.gxajl.com/miniprograms/index.php', //仅为示例，并非真实的接口地址
       method: "post",
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
+      // header: {
+      //   'content-type': 'application/json' // 默认值
+      // },
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: opt,
       success: function (res) {
         wx.showToast({
           title: '信息提交成功',
@@ -165,7 +168,11 @@ Page({
         setTimeout(function () {
           wx.hideToast()
         }, 2000)
+        console.log(111);
         console.log(res.data)
+      },
+      fail:function(e){
+        console.log(e);
       }
     })
   },

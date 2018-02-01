@@ -1,4 +1,5 @@
 /**index.wxss**/
+
 .userinfo {
   margin-top: -50px;
   display: flex;
@@ -8,13 +9,15 @@
   border: none;
   margin-bottom: 10px;
 }
-.userinfoBtn{
+
+.userinfoBtn {
   background: #ffd401;
-  border:1px solid #ffd401;
+  border: 1px solid #ffd401;
   outline: none;
   box-shadow: none;
 }
-button::after{
+
+button::after {
   border: none;
 }
 
@@ -32,7 +35,8 @@ button::after{
 .usermotto {
   margin-top: 20px;
 }
-.form{
+
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,33 +44,37 @@ button::after{
   width: 100%;
   height: auto;
 }
-.form label{
-  width:42px;
+
+.form label {
+  width: 42px;
   text-align: right;
   margin-right: 6px;
   font-size: 14px;
 }
-.form .line{
+
+.form .line {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 80rpx;
-  margin:6rpx;
+  margin: 6rpx;
 }
-.form .input{
+
+.form .input {
   width: 70%;
   padding: 6px;
-  margin:6px;
-  background-color: #FFF;
+  margin: 6px;
+  background-color: #fff;
   border-radius: 4px;
   font-size: 14px;
 }
-.btn{
+
+.btn {
   width: 40%;
   height: 40px;
   background-color: #4f2a1a;
-  color:#FFF;
+  color: #fff;
   border: none;
   border-radius: 8px;
   font-size: 16px;
