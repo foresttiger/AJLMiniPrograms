@@ -191,16 +191,20 @@ Page({
 
   },
   showMSModel: function (e) {
+    var c = e;
+    if(e == "success"){
+      c = "信息提交成功咯，我们将很快联系您！";
+    }
     wx.showModal({
       title: '提示',
-      content: e,
+      content: c,
       showCancel: false,
       success: function (res) {
         if (res.confirm) {
           console.log('用户点击确定')
 
         }
-        if (e == "信息提交成功咯，我们将很快联系您！"){
+        if (e == "success"){
           wx.navigateTo({
             url: '../index/index'
           })
@@ -227,7 +231,7 @@ Page({
         //   duration: 10000
         // })
         wx.hideToast()
-        _this.showMSModel("信息提交成功，我们将很快联系您！")
+        _this.showMSModel("success")
         _this.setData({
           inputTxt: ''
         })
