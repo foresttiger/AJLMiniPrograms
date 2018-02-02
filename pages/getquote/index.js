@@ -4,7 +4,6 @@ const util = require('../../utils/util.js')
 const app = getApp()
 
 Page({
-
   data: {
     motto: 'Hello World',
     userInfo: {},
@@ -59,6 +58,9 @@ Page({
     typeIndex:1
   },
   onLoad: function(options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    });
     this.setData({
       other: "微信号：" + options.userInfo
     })

@@ -18,11 +18,11 @@
       <input class='input' value="{{inputTxt}}" bindinput="cellnameInput" placeholder='小区名' type='text' name="cellname"></input>
     </view>
     <view class='line'>
-      <label>地址</label>
+      <label class='label'><text>地</text><text>址</text></label>
       <input class='input' value="{{inputTxt}}" bindinput="addressInput" type='text' placeholder='小区所在地址' name="address"></input>
     </view>
     <view class='line'>
-      <label>户型</label>
+      <label class='label'><text>户</text><text>型</text></label>
       <picker bindchange="bindComponentChange" mode="selector" value="{{componentIndex}}" range="{{component}}">
         <view class="picker">
           {{component[componentIndex]}}
@@ -30,11 +30,11 @@
       </picker>
     </view>
     <view class='line'>
-      <label>面积</label>
+      <label class='label'><text>面</text><text>积</text></label>
       <input class='input' value="{{inputTxt}}" bindinput="areaInput" type='text' placeholder='建筑面积（㎡）' name="area"></input>
     </view>
     <view class='line'>
-      <label>风格</label>
+      <label class='label'><text>风</text><text>格</text></label>
       <picker bindchange="bindStylesChange" mode="selector" value="{{stylesIndex}}" range="{{styles}}">
         <view class="picker">
           {{styles[stylesIndex]}}
@@ -42,7 +42,7 @@
       </picker>
     </view>
     <view class='line'>
-      <label>预算</label>
+      <label class='label'><text>预</text><text>算</text></label>
       <picker bindchange="bindBudgetChange" mode="selector" value="{{budgetsIndex}}" range="{{budgets}}">
         <view class="picker">
           {{budgets[budgetsIndex]}}
@@ -50,7 +50,7 @@
       </picker>
     </view>
     <view class='line'>
-      <label>类型</label>
+      <label class='label'><text>类</text><text>型</text></label>
       <radio-group class="radio-group" bindchange="radioChange">
         <label class="radio" wx:for="{{items}}">
           <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
@@ -61,5 +61,5 @@
     <!-- <textarea name="other">
     </textarea> -->
   </view>
-  <text class='tips'>*为了您的权益，您的隐私将被严格保密。</text>
+  <text class='tips'>*为了您的权益，您的隐私将被严格保密*</text>
 </view>

@@ -8,6 +8,9 @@ Page({
     // url = "../navigator/navigator?title=我是navigate"
   },
     onLoad: function (e) {
+      wx.showShareMenu({
+        withShareTicket: true
+      });
     var _this = this;
     wx.getSetting({
       success(res) {

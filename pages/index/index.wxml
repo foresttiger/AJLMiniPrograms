@@ -8,8 +8,7 @@
        <view class="line"></view>
    </view>
     <view class="btn" bindtap="bindViewTap">
-       <text>立即</text>
-       <text>获取</text>
+       <view class='btn-text'><text>立</text><text>即</text><text>获</text><text>取</text></view>
     </view>
-    <text class='tips'>*报价最终解释权归安居乐所有</text>
+    <text class='tips'>*报价最终解释权归安居乐所有*</text>
 </view>
