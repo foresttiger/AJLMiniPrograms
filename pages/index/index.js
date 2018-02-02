@@ -2,8 +2,14 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   bindViewTap: function () {
+    if (this.data.userInfo){
+      var url = "../getquote/index?userInfo=" + this.data.userInfo.nickName;
+    }else{
+      var url = "../getquote/index";
+      
+    }
     wx.navigateTo({
-      url: "../getquote/index?userInfo=" + this.data.userInfo.nickName
+      url: url
     })
     // url = "../navigator/navigator?title=我是navigate"
   },
